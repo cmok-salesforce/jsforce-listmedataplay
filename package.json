@@ -1,0 +1,22 @@
+{
+  "name": "jsforce-listmedataplay",
+  "version": "0.0.1",
+  "description": "To extract the metadata information into a csv file to help with further steps of creating a package xml and pull information.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siddharatha/jsforce-listmedataplay.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/siddharatha/jsforce-listmedataplay/issues"
+  },
+  "dependencies": {
+    "progress": "~1.1.8",
+    "jsforce": "~1.4.0"
+  }
+}
