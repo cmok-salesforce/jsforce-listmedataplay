@@ -1,6 +1,6 @@
 //Salesforce Parameters
-var sfusername='';
-var sfpassword='';
+var sfusername='sesa206167@bridge-fo.com.finforce';
+var sfpassword='oct@2014uwOImiNLt4QpHacm3FfAU5HM';
 var loginEndpoint='https://test.salesforce.com';
 var useoauth=false;
 var oauthparams = {    
