@@ -16,7 +16,13 @@
     "url": "https://github.com/siddharatha/jsforce-listmedataplay/issues"
   },
   "dependencies": {
+    "jsforce": "~1.4.0",
     "progress": "~1.1.8",
-    "jsforce": "~1.4.0"
+    "properties": "^1.2.1",
+    "underscore": "^1.8.3",
+    "xml-writer": "^1.6.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
   }
 }

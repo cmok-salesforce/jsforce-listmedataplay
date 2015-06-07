@@ -1,21 +1,26 @@
 //Salesforce Parameters
-var sfusername='sesa206167@bridge-fo.com.finforce';
-var sfpassword='oct@2014uwOImiNLt4QpHacm3FfAU5HM';
-var loginEndpoint='https://test.salesforce.com';
+var sfusername='siddharatha.n@tcs.com';//'sesa206167@bridge-fo.com.uatapr';
+var sfpassword='jan@20158rOwbskGEnVWw7xFCM18TAmy';
+var loginEndpoint='https://login.salesforce.com';
 var useoauth=false;
 var oauthparams = {    
     loginUrl : loginEndpoint,
-    clientId : 'your connected app client id',
-    clientSecret : 'your connected app client secret',
-    redirectUri : 'your connected app redirect url'
+    clientId : '3MVG99qusVZJwhsngoZ2VL_GF1pAQ83UKhhGTrOtMPPHIP8s9A7SZPVQZtiq6hO7asSqmTgXzKFmSvpCJ5wYb',
+    clientSecret : '8802715781625351810',
+    redirectUri : 'https://login.salesforce.com/services/oauth2/callback'
   }
 
 //request for updates in days starting backwards from current date.
-var recent_decider=2;
-
-
+var starttime=new Date();
+var recent_decider=100;
+var developerCompGroup={};
 var jsforce=require('jsforce');
 var fs=require('fs');
+var _ = require('underscore');
+var unzip=require('unzip');
+// var package={"types":[{"members":["MyFate3","VFP_AngularBootstrapTemplate"],"name":"ApexPage"},{"members":"JSONUtils","name":"ApexClass"}],"version":"30.0"}
+var pacakgexmlstuff={"version":"30.0","types":[]}
+var packages={}
 var conn=undefined;
 if(useoauth){
     conn=new jsforce.Connection({
@@ -38,7 +43,7 @@ if(err){console.log(err)}
         var metaobjects=res.metadataObjects;
         var lstmetaquery=[];
         var startTime=new Date();
-        var initialcount=Math.round(metaobjects.length/3);
+        var initialcount=Math.ceil(metaobjects.length/3);
         var completedcount=initialcount;
         var bar = new ProgressBar('  Processing [:bar] :percent :etas', {
             complete: '='
@@ -46,21 +51,6 @@ if(err){console.log(err)}
           , width: 80
           , total: initialcount
         });
-        (function next() {
-          if (initialcount) {
-            if(completedcount==0)
-                bar.complete=true;
-            var chunk = initialcount-completedcount;
-            bar.tick(chunk);
-
-            if (!bar.complete) {
-              setTimeout(next, Math.random() * 2000);
-            }
-            else{
-                console.log('Finished processing ... cleaning up...');
-            }
-          }
-        })();
 
         for(var i=0;i<metaobjects.length;i++)
         {
@@ -73,8 +63,6 @@ if(err){console.log(err)}
             }
         }
         lstmetaquery.sort();
-        fs.writeFile('completeinfo_'+userInfo.organizationId+'.csv','"Type","fullName","lastModifiedById","lastModifiedByName","lastModifiedDate","createdDate","namespacePrefix","manageableState","createdById"\n',function(err){if(err)console.log(err)});
-        fs.writeFile('recent_'+userInfo.organizationId+'.csv','"Type","fullName","lastModifiedById","lastModifiedByName","lastModifiedDate","createdDate","namespacePrefix","manageableState"\n',function(err){if(err)console.log(err)});
         for(var i=0;i<lstmetaquery.length;i=i+3)
         {            
             var newlist=lstmetaquery.slice(i,i+3);
@@ -87,16 +75,56 @@ if(err){console.log(err)}
                     var completeinfostr='';
                     var recentdaysstr='';
                     for(var j=0;j<result.length;j++){                        
-                        completeinfostr+='"'+result[j].type+'","'+result[j].fullName+'","'+result[j].lastModifiedById+'","'+result[j].lastModifiedByName+'","'+result[j].lastModifiedDate+'","'+result[j].createdDate+'","'+result[j].namespacePrefix+'","'+result[j].manageableState+'","'+result[j].createdById+'"\n';
                         diffdays=getDiff(result[j].lastModifiedDate);
-                        if(diffdays<recent_decider)                        
-                        recentdaysstr+='"'+result[j].type+'","'+result[j].fullName+'","'+result[j].lastModifiedById+'","'+result[j].lastModifiedByName+'","'+result[j].lastModifiedDate+'","'+result[j].createdDate+'","'+result[j].namespacePrefix+'","'+result[j].manageableState+'","'+result[j].createdById+'"\n';
+                        if(diffdays<=recent_decider){
+                            if(_.has(developerCompGroup,result[j].lastModifiedByName))
+                            {
+                                developerCompGroup[result[j].lastModifiedByName].push({
+                                    type : result[j].type,
+                                    component : result[j].fullName,
+                                    manageableState : result[j].manageableState,
+                                });
+                            }
+                            else
+                            {
+                                developerCompGroup[result[j].lastModifiedByName]=
+                                [{
+                                    type : result[j].type,
+                                    component : result[j].fullName,
+                                    manageableState : result[j].manageableState
+                                }];
+                            }
+
+                            if(_.has(packages,result[j].type)){
+                                packages[result[j].type].push(result[j].fullName);
+                            }
+                            else
+                            {
+                                packages[result[j].type]=[result[j].fullName];
+                            }
+                        }                        
                     }
                 }
-                    fs.appendFile('completeinfo_'+userInfo.organizationId+'.csv',completeinfostr,function(err){if(err)console.log(err)});
-                    fs.appendFile('recent_'+userInfo.organizationId+'.csv',recentdaysstr,function(err){if(err)console.log(err)});
-                    completedcount--;
+                completedcount--;
+                bar.tick(initialcount-completedcount);
+                if(completedcount==0){
+                fs.writeFile('developergrouping.json',JSON.stringify(developerCompGroup),function(err){
+                    preparePackageXML();
+                });
+                }    
             });
+        }
+
+        function preparePackageXML(){
+            _.each(_.keys(packages),function(eachkey){
+                pacakgexmlstuff.types.push({"members":packages[eachkey].join(','),"name":eachkey});
+            });
+            fs.writeFile('packagegrouping.json',JSON.stringify(pacakgexmlstuff),function(err){
+            });
+            /* conn.metadata.retrieve({unpackaged:pacakgexmlstuff}).stream().pipe(fs.createWriteStream("sidharth.zip",function(err){
+                console.log(((new Date()-starttime)/1000) + ' seconds ');
+                console.log('finished ......');
+            }));*/
         }
 
         function getDiff(datestr)
@@ -104,7 +132,7 @@ if(err){console.log(err)}
             var currentDate=new Date();
             var recordDate=new Date(datestr);
             var timeDiff = Math.abs(currentDate.getTime() - recordDate.getTime());
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600));
             return diffDays;
         }
 
