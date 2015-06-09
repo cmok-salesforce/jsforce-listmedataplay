@@ -10,10 +10,9 @@ var _ = require('underscore');
 var fs = require('fs');
 
 
-// variables required as global
-var eventemitter, sfproperties, conn, listQuerySplit, completedItems, developerGroupingMap={}, packageGroupingMap={};
+// variables required as global 
+var eventemitter, sfproperties, conn, listQuerySplit, completedItems, developerGroupingMap={}, packageGroupingMap={} ,sandboxname ,sandboxdata={} , useoauth=true;
 var today = new Date();
-var recentItemsDecider_indays = 2000;
 
 function loadProperties() {
   console.log('loading property information from build.properties file');
@@ -21,24 +20,53 @@ function loadProperties() {
     if (error) {
       return console.error(error);
     }
-    console.log(obj.sfusername);
+    // console.log(obj);
     sfproperties = obj;
-    eventemitter.emit('loadedproperties');
+    fs.readFile('../sandboxinfo.json','utf8',function(err,data){
+        if(err) console.error(err);
+        sandboxdata=JSON.parse(data);
+        eventemitter.emit('loadedproperties');
+    });
+    
    });   
 }
 
 function connectToSalesforce(){
     console.log('connecting to salesforce');
-    var oauthparams = {    
-        loginUrl : sfproperties.serverurl,
-        clientId : sfproperties.clientId,
-        clientSecret : sfproperties.sfclientSecret,
-        redirectUri :  sfproperties.sfredirectUri
+    process.argv.forEach(function (val, index, array) {
+    if(index==2)
+    {
+      sandboxname=val.toLowerCase(); 
+      if(_.has(sandboxdata,sandboxname))
+      {
+        sfproperties.sfusername=sandboxdata[sandboxname].username;
+        sfproperties.sfpassword=sandboxdata[sandboxname].password;
+        sfproperties.sfserverurl=sandboxdata[sandboxname].loginurl;
+        console.log(sandboxdata[sandboxname].initialsetupdone);
+        if(sandboxdata[sandboxname].initialsetupdone){
+            sfproperties.sfrecentdecidermode=sandboxdata[sandboxname].trackingmode;
+            sfproperties.sfrecentdecider=sandboxdata[sandboxname].trackingtime;
+        }
+        else{
+           sfproperties.sfrecentdecidermode='days';
+           sfproperties.sfrecentdecider=Math.ceil((new Date()-new Date(sandboxdata[sandboxname].refresheddate))/(1000*3600*24));
+           console.log(sfproperties.sfrecentdecider);
+        }
+      } 
     }
-    if(sfproperties.useoauth){
+    });
+
+    var oauthparams = {    
+        loginUrl : sfproperties.sfserverurl,
+        clientId: '3MVG99qusVZJwhsngoZ2VL_GF1pAQ83UKhhGTrOtMPPHIP8s9A7SZPVQZtiq6hO7asSqmTgXzKFmSvpCJ5wYb',
+        clientSecret: '8802715781625351810',
+        redirectUri: 'https://login.salesforce.com/services/oauth2/callback',
+    }
+    if(useoauth){
+        console.log('using oauth');
         conn=new jsforce.Connection({
             oauth2 : oauthparams
-        });    
+        });
     }
     else
     {
@@ -47,9 +75,15 @@ function connectToSalesforce(){
         });
     }
     conn.login(sfproperties.sfusername,sfproperties.sfpassword,function(err,userInfo){
-        if(err) console.error(err);
-        console.log(userInfo);
+        if(err){
+            console.error(err);
+            eventemitter.emit('connectionfailed');
+        }
+        else{
+        organizationId=userInfo.organizationId;
+        console.log('connected to '+sandboxname+ ' as '+ sfproperties.sfusername);
         eventemitter.emit('connected');
+        }
     });
 }
 
@@ -84,11 +118,23 @@ function loadListQueries(){
 function runSmallListQueries(listqueryparameter){
     conn.metadata.list(listqueryparameter).then(function(listqueryResult){
         _.each(listqueryResult,function(listResult){
-            if(_dateDiffInDays(listResult.lastModifiedDate) <= recentItemsDecider_indays)
+            if(sfproperties.sfrecentdecidermode == 'hours')
             {
-                _checkAndAddtoObject(developerGroupingMap,listResult.lastModifiedByName,listResult.fileName);
-                _checkAndAddtoObject(packageGroupingMap,listResult.type,listResult.fullName);
+                if(_timeDiffInHours(listResult.lastModifiedDate) <= sfproperties.sfrecentdecider)
+                {
+                    _checkAndAddtoObject(developerGroupingMap,listResult.lastModifiedByName,listResult.fileName);
+                    _checkAndAddtoObject(packageGroupingMap,listResult.type,listResult.fullName);
+                }
             }
+            else if(sfproperties.sfrecentdecidermode == 'days')
+            {
+                if(_dateDiffInDays(listResult.lastModifiedDate) <= sfproperties.sfrecentdecider)
+                {
+                    _checkAndAddtoObject(developerGroupingMap,listResult.lastModifiedByName,listResult.fileName);
+                    _checkAndAddtoObject(packageGroupingMap,listResult.type,listResult.fullName);
+                }
+            }
+            
         });
         completedItems++;
 
@@ -147,37 +193,48 @@ function preparePackageXMLFile(){
     });
     packagexmlstring+='\n<version>32.0</version>';
     packagexmlstring+='\n</Package>';
-    fs.writeFile('package.xml',packagexmlstring,function(err){
+    fs.writeFile(sandboxname+'_package.xml',packagexmlstring,function(err){
         if(err) console.error(err);
-        console.log(' ok am done writing the package xml');
+        console.log(' ok am done writing the package xml for '+sandboxname);
     })
 }
 
 function prepareDeveloperScriptFile(){
     console.log('preparing the developer script file');
-    var gitprefix='git --git-dir="../sidretrieve/.git" --work-tree="../sidretrieve"';
-    var scriptfilestring=gitprefix+' init \n';
-    scriptfilestring+=gitprefix+' commit -m "initial commit" \n';
+    var gitprefix='git --git-dir="../../boxes/'+sandboxname+'/.git" --work-tree="../../boxes/'+sandboxname+'"';
+    var scriptfilestring=gitprefix+' checkout -b '+(sandboxname!=null ? sandboxname : organizationId )+ '\n';
     _.each(_.keys(developerGroupingMap),function(developername){
-        _.each(_splitArrayBySize(_.uniq(developerGroupingMap[developername]),500),function(splittedarray){
-                scriptfilestring+= gitprefix+' add "'+ splittedarray.join('" "') +'"\n';
+        var addarray=[];
+        _.each(_.uniq(developerGroupingMap[developername]),function(content){
+                addarray.push('"'+content+'" "'+content+'-meta.xml'+'"');
         });
-        
+        _.each(_splitArrayBySize(addarray,3000),function(customlist){
+            scriptfilestring+= gitprefix+' add '+customlist.join(' ')+'\n'; 
+        });
         scriptfilestring+= gitprefix+' commit --author="'+developername+'<'+developername+'@schneider-electric.com>" -m "'+developername+' s commit"\n';
     });
-    fs.writeFile('gitcommands.sh',scriptfilestring,function(err){
+    scriptfilestring+=gitprefix+' add .\n';
+    scriptfilestring+=gitprefix+' commit --author="gitInterfaceUser<gitinterfaceuser@gmail.com>" -m "commiting remaining files"\n';
+    scriptfilestring+=gitprefix+' push -u origin '+(sandboxname!=null ? sandboxname : organizationId );
+    fs.writeFile(sandboxname+'_gitcommands.sh',scriptfilestring,function(err){
         if(err) console.error(err);
         console.log('prepared developer script file');
     })
 }
 
+function failedconnection(){
+    console.log('no idea what happened but connection is failed and you gotta do something');
+}
+
 function loadEventEmitterMappings(){ 
     eventemitter = new events.EventEmitter();   
     eventemitter.on('loadedproperties',connectToSalesforce);
+    eventemitter.on('connectionfailed',failedconnection);
     eventemitter.on('connected',loadMetaObjects);
     eventemitter.on('listQueryPrepared',loadListQueries);
     eventemitter.on('completedcalculations',saveToFiles);
 }
+
 
 function start(){
     loadEventEmitterMappings();

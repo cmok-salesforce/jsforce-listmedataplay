@@ -10,8 +10,10 @@ using list metadata to determine the list of changes in the org. completely buil
 
 > npm install
 
-update the index.js file with salesforce username,password and connected app details if you have one.
+> mkdir genfiles
 
-once done, just run .
+> node Initialization.js
 
-> node index.js
+> cd genfiles 
+
+> sh initializatio

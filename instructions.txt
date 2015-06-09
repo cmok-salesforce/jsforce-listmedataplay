@@ -1,3 +1,0 @@
-use the jsforce script to prepare the developer group json and package.xml
-use ant build tool to download the content from package.xml
-once the build is finished , git add specifically, and commit them as individual users.

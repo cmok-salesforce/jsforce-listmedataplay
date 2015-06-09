@@ -2,3 +2,4 @@ node_modules/
 retrieveFolder/
 *.csv
 *.zip
+genfiles/*

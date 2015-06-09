@@ -1,0 +1,461 @@
+{
+    "aprcrp": {
+        "id": "00DK000000W4fLuMAJ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "10/11/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.uatapr"
+    },
+    "bfocomm": {
+        "id": "00Dq0000000AywAEAS",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "30/3/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.bfoCOM"
+    },
+    "chitu": {
+        "id": "00D170000008ljPEAQ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "9/7/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.Chitu"
+    },
+    "cloudlab1": {
+        "id": "00Dq0000000ArOgEAK",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "18/3/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.Cloudl"
+    },
+    "cmatrix": {
+        "id": "00DJ0000003P47GMAS",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "6/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.CMATRI"
+    },
+    "coinbfo": {
+        "id": "00DZ000000Min5aMAB",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "27/11/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.CoinbF"
+    },
+    "comm": {
+        "id": "00DK000000W4FcDMAV",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "19/8/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.COMM"
+    },
+    "demo": {
+        "id": "00Dq0000000Ap1SEAS",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "18/3/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.demo"
+    },
+    "devapr": {
+        "id": "00D17000000A19PEAS",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "27/1/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devAPR"
+    },
+    "devbfs": {
+        "id": "00DK000000W4QO3MAN",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "16/10/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devBFS"
+    },
+    "devcti": {
+        "id": "00D170000008lqTEAQ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "10/7/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devCTI"
+    },
+    "devcti2": {
+        "id": "00DK000000W4pGvMAJ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "25/11/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devCTI"
+    },
+    "devifw": {
+        "id": "00D17000000A1E7EAK",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "27/1/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.DevIFW"
+    },
+    "devjun": {
+        "id": "00D17000000AXlmEAG",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "21/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devJun"
+    },
+    "devmay": {
+        "id": "00Dq0000000BMVYEA4",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "27/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devMay"
+    },
+    "devmig": {
+        "id": "00DZ00000007yMNMAY",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "22/11/2012",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devmig"
+    },
+    "devzuora": {
+        "id": "00DK000000W4oEuMAJ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "22/11/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.devZuo"
+    },
+    "finforce": {
+        "id": "00DK000000W3fIFMAZ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "6/12/2013",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.FinFor"
+    },
+    "int1": {
+        "id": "00D170000009xyIEAQ",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "2/2/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.Int1"
+    },
+    "liveagent": {
+        "id": "00Dq0000000BMaMEAW",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "29/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.LiveAg"
+    },
+    "mfactor": {
+        "id": "00DZ000000Mj21hMAB",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "13/3/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.mFacto"
+    },
+    "minordev": {
+        "id": "00Dq0000000B28iEAC",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "2/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.Minord"
+    },
+    "mirror": {
+        "id": "00Dq0000000B8yfEAC",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "15/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.Mirror"
+    },
+    "oct15crp": {
+        "id": "00D17000000AQJ4EAO",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "14/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.oct15c"
+    },
+    "octbackup": {
+        "id": "00DK000000W4atvMAB",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "3/11/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.octbac"
+    },
+    "octcrp": {
+        "id": "00DZ000000Mhm3WMAR",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "5/5/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.OCTCrp"
+    },
+    "production": {
+        "id": "absm",
+        "initialsetupdone": false,
+        "loginurl": "https://login.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "1/1/1970",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com"
+    },
+    "quickapr": {
+        "id": "00Dq0000000B4zmEAC",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "4/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.QuickA"
+    },
+    "refapr": {
+        "id": "00Dg0000006SIvDEAW",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "23/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.refApr"
+    },
+    "reffeb": {
+        "id": "00Dq0000000AdzkEAC",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "25/2/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.REFFeb"
+    },
+    "refmay": {
+        "id": "00D17000000AaFQEA0",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "25/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.refMay"
+    },
+    "saasapttus": {
+        "id": "00DJ0000003KGi7MAG",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "5/6/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.saasap"
+    },
+    "saaszuora": {
+        "id": "00DJ0000003KZGwMAO",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "19/6/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.saaszu"
+    },
+    "stgapr": {
+        "id": "00Dq0000000BC7eEAG",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "14/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.stgAPR"
+    },
+    "stgapr1": {
+        "id": "00Dq0000000BHGsEAO",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "19/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.stgAPR"
+    },
+    "stgmay": {
+        "id": "00D17000000AZykEAG",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "24/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.stgMay"
+    },
+    "stgmay1": {
+        "id": "00D17000000AcgrEAC",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "27/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.stgMay1"
+    },
+    "stm": {
+        "id": "00DK000000W4vzyMAB",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "10/12/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.STM"
+    },
+    "train02": {
+        "id": "00D17000000ALqfEAG",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "12/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.TRAIN0"
+    },
+    "trnbfo": {
+        "id": "00DZ000000Mi6YzMAJ",
+        "initialsetupdone": false,
+        "password": "apr@2015",
+        "refresheddate": "26/5/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.trnbfo"
+    },
+    "uatapr": {
+        "id": "00Dq0000000AQLyEAO",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "jan@2015",
+        "refresheddate": "2/14/2015",
+        "trackingmode": "days",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.UATApr"
+    },
+    "uatbfs": {
+        "id": "00DK000000W50eAMAR",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "15/12/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.UATBFS"
+    },
+    "wcpq": {
+        "id": "00D170000009q4wEAA",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "15/1/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.WCPQ"
+    },
+    "xforce": {
+        "id": "00Dq0000000B9BXEA0",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "10/4/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.xForce"
+    },
+    "xgd": {
+        "id": "00Dq0000000BQQ1EAO",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "4/5/2015",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.xGD"
+    },
+    "xnotes": {
+        "id": "00DK000000W43bxMAB",
+        "initialsetupdone": false,
+        "loginurl": "https://test.salesforce.com",
+        "password": "apr@2015",
+        "refresheddate": "21/7/2014",
+        "trackingmode": "hours",
+        "trackingtime": 1,
+        "username": "sesa206167@bridge-fo.com.xnotes"
+    }
+}
