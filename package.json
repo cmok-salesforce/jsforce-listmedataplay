@@ -20,5 +20,5 @@
     "jsforce": "~1.4.0",
     "properties": "^1.2.1",
     "underscore": "^1.8.3"
-  },
+  }
 }

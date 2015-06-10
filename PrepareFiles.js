@@ -13,6 +13,7 @@ var fs = require('fs');
 // variables required as global 
 var eventemitter, sfproperties, conn, listQuerySplit, completedItems, developerGroupingMap={}, packageGroupingMap={} ,sandboxname ,sandboxdata={} , useoauth=true;
 var today = new Date();
+var ignoreThesetypes=['roles','dashboard','emailtemplates','report'];
 
 function loadProperties() {
   console.log('loading property information from build.properties file');
@@ -122,16 +123,20 @@ function runSmallListQueries(listqueryparameter){
             {
                 if(_timeDiffInHours(listResult.lastModifiedDate) <= sfproperties.sfrecentdecider)
                 {
+                    if(_.indexOf(ignoreThesetypes,listResult.type.toLowerCase()==-1){
                     _checkAndAddtoObject(developerGroupingMap,listResult.lastModifiedByName,listResult.fileName);
                     _checkAndAddtoObject(packageGroupingMap,listResult.type,listResult.fullName);
+                    }
                 }
             }
             else if(sfproperties.sfrecentdecidermode == 'days')
             {
                 if(_dateDiffInDays(listResult.lastModifiedDate) <= sfproperties.sfrecentdecider)
                 {
+                    if(_.indexOf(ignoreThesetypes,listResult.type.toLowerCase()==-1){
                     _checkAndAddtoObject(developerGroupingMap,listResult.lastModifiedByName,listResult.fileName);
                     _checkAndAddtoObject(packageGroupingMap,listResult.type,listResult.fullName);
+                    }
                 }
             }
             
@@ -184,6 +189,7 @@ function preparePackageXMLFile(){
     console.log('preparing package xml file as you love it so much');
     var packagexmlstring='<?xml version="1.0" encoding="UTF-8"?>\n<Package xmlns="http://soap.sforce.com/2006/04/metadata">';
     _.each(_.keys(packageGroupingMap),function(componenttype){
+        if(componenttype)
         packagexmlstring+='\n<types>';
         _.each(_.uniq(packageGroupingMap[componenttype]),function(member){
             packagexmlstring+='\n<members>'+member+'</members>';

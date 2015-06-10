@@ -3,3 +3,4 @@ retrieveFolder/
 *.csv
 *.zip
 genfiles/*
+sandboxinfo.json
